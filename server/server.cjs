@@ -12,8 +12,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('School Website API is running. Port 5000');
+// Serve static files from React app (built frontend)
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// API root message (Optional, can be kept for testing)
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'API is running', version: '1.0.0' });
 });
 
 // Configure Multer for file uploads (memory storage for simplicity, can be changed to disk)
@@ -109,6 +113,12 @@ app.post('/api/admission', upload.fields([
     console.error('Error sending admission email:', error);
     res.status(500).json({ success: false, error: 'Failed' });
   }
+});
+
+// Catch-all route to serve React index.html
+// This allows React Router to handle client-side routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 const PORT = process.env.PORT || 5000;

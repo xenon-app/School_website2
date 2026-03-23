@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "npm run build && node server/server.cjs",
     "dev": "vite",
     "server": "nodemon server/server.cjs",
     "start-all": "npm run server & npm run dev",
