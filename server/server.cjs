@@ -119,10 +119,12 @@ app.post('/api/admission', upload.fields([
 // This allows React Router to handle client-side routing
 // We use app.use here as it's the most reliable catch-all in Express 5
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+  const indexPath = path.join(__dirname, '../dist/index.html');
+  res.sendFile(indexPath);
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server is LIVE on port ${PORT}`);
+  console.log(`📁 Serving assets from: ${path.join(__dirname, '../dist')}`);
 });

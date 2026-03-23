@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 function ElegantShape({
     className,
@@ -76,6 +77,7 @@ function HeroGeometric({
     title1?: string;
     title2?: string;
 }) {
+    const navigate = useNavigate();
     const fadeUpVariants = {
         hidden: { opacity: 0, y: 30 },
         visible: (i: number) => ({
@@ -190,7 +192,7 @@ function HeroGeometric({
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => window.location.href = '/admissions?tab=apply'}
+                                onClick={() => navigate('/admissions?tab=apply')}
                                 className="px-8 py-4 bg-gradient-to-r from-[#7C8CFF] to-[#FF8DA1] text-white font-bold rounded-xl shadow-[0_0_20px_rgba(124,140,255,0.3)] transition-all cursor-pointer"
                             >
                                 Apply Now 2026
