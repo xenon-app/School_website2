@@ -117,7 +117,8 @@ app.post('/api/admission', upload.fields([
 
 // Catch-all route to serve React index.html
 // This allows React Router to handle client-side routing
-app.get('/:any*', (req, res) => {
+// We use app.use here as it's the most reliable catch-all in Express 5
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
