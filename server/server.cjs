@@ -11,10 +11,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('School Website API is running. Port 5000');
-});
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // Configure Multer for file uploads (memory storage for simplicity, can be changed to disk)
 const upload = multer({ storage: multer.memoryStorage() });
@@ -109,6 +106,10 @@ app.post('/api/admission', upload.fields([
     console.error('Error sending admission email:', error);
     res.status(500).json({ success: false, error: 'Failed' });
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
