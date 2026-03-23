@@ -7,6 +7,7 @@
     "dev": "vite",
     "server": "nodemon server/server.cjs",
     "start-all": "npm run server & npm run dev",
+    "start": "npm run build && node server/server.cjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
