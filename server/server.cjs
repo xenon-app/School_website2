@@ -117,7 +117,7 @@ app.post('/api/admission', upload.fields([
 
 // Catch-all route to serve React index.html
 // This allows React Router to handle client-side routing
-app.get('(.*)', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
